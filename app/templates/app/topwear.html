@@ -1,0 +1,48 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Mobile{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+    <div class="list-group">
+   <a href="{% url 'topwear' %}" class="list-group-item list-group-item-action " aria-current="true">
+     All TOPWEARS
+   </a>
+   <a href="{% url 'topweardata' 'wrong' %}" class="list-group-item list-group-item-action ">wrong</a>
+   <a href="{% url 'topweardata' 'Lee' %}" class="list-group-item list-group-item-action " aria-current="true">Lee</a>
+   <a href="{% url 'topweardata' 'jeep' %}" class="list-group-item list-group-item-action " aria-current="true">jeep</a>
+   <a href="{% url 'topweardata' 'bellow' %}" class="list-group-item list-group-item-action "aria-current="true">bellow Rs. 400</a>
+   <a href="{% url 'topweardata' 'above' %}" class="list-group-item list-group-item-action "aria-current="true">above Rs. 400</a>
+   <!-- <a class="list-group-item list-group-item-action disabled"aria-current="true">A disabled link item</a> -->
+ </div>
+  </div>
+  <div class="col-sm-7 offset-sm-1">
+    <div class="row">
+
+      {% for product in topwears %}
+
+      <div class="col-sm-4 text-center mb-4    ">
+        <a href="{% url 'product-detail' product.id %}"
+        class="btn">
+        <div class="item">
+          <img src="{{product.product_image.url}}" alt="" height="300">
+          <div class="fw_bold">{{product.titel}}
+
+          </div>
+          <div class="fw_bold">Rs. {{product.discounted_price}}
+            <small class="fw-light text-decoration-line-through">{{product.selling_price}}</small>
+
+          </div>
+
+        </div>
+      </a>
+    </div>
+     {% endfor %}
+
+
+    </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
